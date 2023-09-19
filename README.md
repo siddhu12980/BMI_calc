@@ -1,7 +1,6 @@
 # second_proj
 # this is new feature 
-# this is new bug
-#  this is a bug
+
 
 A new Flutter project.
 
