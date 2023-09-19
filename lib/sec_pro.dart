@@ -18,24 +18,52 @@ class _MydeccopageState extends State<Mydeccopage> {
     final TextEditingController firstcontrol1 = TextEditingController();
     final TextEditingController firstcontrol2 = TextEditingController();
     final TextEditingController firstcontrol3 = TextEditingController();
-    const Color normalColor = Color.fromARGB(255, 114, 157, 231);
-    const Color notNormalColor = Color.fromARGB(255, 210, 134, 128);
+
+    const border = OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Color.fromARGB(255, 114, 157, 231),
+        width: 2,
+        style: BorderStyle.solid,
+        strokeAlign: BorderSide.strokeAlignCenter,
+      ),
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+    );
+
+    double bmi(double a, double b, double c) {
+      if (a == 0 || b == 0) {
+        return 0;
+      } else {
+        return (((weight / height) / height) * 10000);
+      }
+    }
+
+    // const Color normalColor = Color.fromARGB(255, 114, 157, 231);
+    // const Color notNormalColor = Color.fromARGB(255, 210, 134, 128);
+    Color backgroundColor;
+
+    if (answer < 18.5 && answer != 0) {
+      backgroundColor = const Color.fromARGB(255, 227, 162, 157); // Underweight
+    } else if (answer >= 18.5 && answer < 24.9) {
+      backgroundColor =
+          const Color.fromARGB(255, 114, 157, 231); // Normal weight
+    } else if (answer == 0) {
+      backgroundColor =
+          const Color.fromARGB(255, 114, 157, 231); // Normal weight
+    } else {
+      backgroundColor = Colors.red; // Overweight
+    }
 
     return Scaffold(
-      backgroundColor: answer > 25 ? notNormalColor : normalColor,
- 
+      backgroundColor:
+          backgroundColor, //const Color.fromARGB(255, 114, 157, 231),
 
       appBar: AppBar(
-        backgroundColor:const Color.fromARGB(255, 114, 157, 231),
-        title:const Text("BMI CALC",
-
-        style: TextStyle(
-        
-
-        ),
+        backgroundColor: const Color.fromARGB(255, 114, 157, 231),
+        title: const Text(
+          "BMI CALC",
+          style: TextStyle(),
         ),
         centerTitle: true,
-      
       ),
       body: Center(
         child: Column(
@@ -65,6 +93,7 @@ class _MydeccopageState extends State<Mydeccopage> {
                   ),
                 ),
                 Flexible(
+                  
                   child: TextField(
                     controller: firstcontrol1,
                     style: const TextStyle(
@@ -80,28 +109,8 @@ class _MydeccopageState extends State<Mydeccopage> {
                       ),
                       filled: true,
                       fillColor: Colors.white12,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 114, 157, 231),
-                          width: 2,
-                          style: BorderStyle.solid,
-                          strokeAlign: BorderSide.strokeAlignCenter,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 114, 157, 231),
-                          width: 2,
-                          style: BorderStyle.solid,
-                          strokeAlign: BorderSide.strokeAlignCenter,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
+                      focusedBorder: border,
+                      enabledBorder: border,
                     ),
                   ),
                 ),
@@ -135,28 +144,8 @@ class _MydeccopageState extends State<Mydeccopage> {
                       ),
                       filled: true,
                       fillColor: Colors.white12,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 114, 157, 231),
-                          width: 2,
-                          style: BorderStyle.solid,
-                          strokeAlign: BorderSide.strokeAlignCenter,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 114, 157, 231),
-                          width: 2,
-                          style: BorderStyle.solid,
-                          strokeAlign: BorderSide.strokeAlignCenter,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
+                      focusedBorder: border,
+                      enabledBorder: border,
                     ),
                   ),
                 ),
@@ -190,28 +179,8 @@ class _MydeccopageState extends State<Mydeccopage> {
                       ),
                       filled: true,
                       fillColor: Colors.white12,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 114, 157, 231),
-                          width: 2,
-                          style: BorderStyle.solid,
-                          strokeAlign: BorderSide.strokeAlignCenter,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 114, 157, 231),
-                          width: 2,
-                          style: BorderStyle.solid,
-                          strokeAlign: BorderSide.strokeAlignCenter,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
+                      focusedBorder: border,
+                      enabledBorder: border,
                     ),
                   ),
                 ),
@@ -221,16 +190,15 @@ class _MydeccopageState extends State<Mydeccopage> {
               padding: const EdgeInsets.fromLTRB(10, 30, 10, 20),
               child: ElevatedButton(
                 onPressed: () {
-
-                  setState(() {
-                    weight = double.parse(firstcontrol1.text);
-                    height = double.parse(firstcontrol2.text);
-                    age = double.parse(firstcontrol3.text);
-
+                  setState(
+                    () {
+                      weight = double.parse(firstcontrol1.text);
+                      height = double.parse(firstcontrol2.text);
+                      age = double.parse(firstcontrol3.text);
 //[weight (kg) / height (cm) / height (cm)] x 10,000
-
-                    answer = (((weight / height) / height) * 10000);
-                  });
+                      answer = bmi(weight, height, age);
+                    },
+                  );
                 },
                 style: TextButton.styleFrom(
                   elevation: 20,
