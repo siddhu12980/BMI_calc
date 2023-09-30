@@ -2,9 +2,10 @@
 # this is new feature 
 
 
-A new Flutter project.
+A new Flutter project 
 
 ## Getting Started
+In this project I have tried to make a BMI calculator app using dart and flutter technology.
 
 This project is a starting point for a Flutter application.
 
